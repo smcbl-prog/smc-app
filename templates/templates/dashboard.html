@@ -1,0 +1,29 @@
+<h2>Dashboard</h2>
+<a href="/logout">Logout</a> | <a href="/audit">Audit</a>
+
+<table border="1">
+<tr>
+<th>Ime</th>
+{% for m in months %}
+<th>{{ m }}</th>
+{% endfor %}
+</tr>
+
+{% for member in members %}
+<tr>
+<td>{{ member.name }}</td>
+
+{% for m in months %}
+<td>
+<form method="POST">
+<input type="hidden" name="member_id" value="{{ member.id }}">
+<input type="hidden" name="month" value="{{ m }}">
+<input name="amount" value="{{ data[member.id][m] }}">
+<button>OK</button>
+</form>
+</td>
+{% endfor %}
+
+</tr>
+{% endfor %}
+</table>
